@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">CovidApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+   <string name="title">Covid Statistics App</string>
+    <string name="about">This app is designed to provide statistics regarding COVID-19. These statistics include the number of people infected by COVID-19, the number of deaths caused by COVID-19, and the number of cases that involved getting tested. This is vital information as keeping track of the population within that country can inform the user at what rate COVID is increasing.
+    </string>
+    <string name="thank_you">We hope you find this app helpful and valuable!</string>
 </resources>
