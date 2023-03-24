@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 
-private var countries = arrayListOf<Country>()
+private var countries = arrayListOf<Response>()
 class CountryAdapter (private val context: Context, private val navController: NavController): RecyclerView.Adapter<CountryAdapter.CountryViewHolder>()  {
 
 
@@ -24,10 +24,11 @@ class CountryAdapter (private val context: Context, private val navController: N
       }
 
       fun bindData(position: Int){
-          val country:Country = countries.get(position)
-          val countryInfo = country.response.get(position)
-          countryTextView.text = countryInfo.country
-          continetTextView.text = countryInfo.continent
+          val country: Response = countries.get(position)
+          //val countryInfo
+          //val countryInfo = country.response.get(position)
+          countryTextView.text = country.country
+          continetTextView.text = country.continent
       }
     }
 
@@ -36,7 +37,7 @@ class CountryAdapter (private val context: Context, private val navController: N
       return CountryViewHolder(view, context)
   }
 
-    fun countryList(list: ArrayList<Country>){
+    fun countryList(list: ArrayList<Response>){
         countries = list
         notifyDataSetChanged()
     }
