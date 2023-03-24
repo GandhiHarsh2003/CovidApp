@@ -33,11 +33,12 @@ class CountryAdapter (private val context: Context, private val navController: N
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
       val view = LayoutInflater.from(parent.context).inflate(R.layout.country_item,parent,false)
-      return CountryViewHolder(view, view.context)
+      return CountryViewHolder(view, context)
   }
 
     fun countryList(list: ArrayList<Country>){
         countries = list
+        notifyDataSetChanged()
     }
 
   override fun getItemCount(): Int {

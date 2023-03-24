@@ -31,9 +31,11 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
+//        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         countryView = binding.countryRecycleView
         countryAdapter = CountryAdapter(requireContext(), Navigation.findNavController(view))
         countryView.layoutManager = LinearLayoutManager(requireContext())
@@ -47,8 +49,12 @@ class HomeFragment : Fragment() {
                     call: Call<ArrayList<Country?>?>,
                     response: Response<ArrayList<Country?>?>
                 ) {
+                    println("hi")
+                    Log.d("HomeFragment", "Response body: " + response.body())
+                    println("hi")
                     // this line is where the error occurs..
                     countryAdapter.countryList(response.body() !! as ArrayList<Country>)
+
                 }
 
                 override fun onFailure(call: Call<ArrayList<Country?>?>, t: Throwable) {
