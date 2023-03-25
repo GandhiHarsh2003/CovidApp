@@ -11,13 +11,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Might get rid of, we'll see -->
-        <ImageView
-            android:id="@+id/country_imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            tools:srcCompat="@tools:sample/avatars" />
+<!--        &lt;!&ndash; Might get rid of, we'll see &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/country_imageView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            tools:srcCompat="@tools:sample/avatars" />-->
 
         <TextView
             android:id="@+id/country_textView"

@@ -44,22 +44,18 @@ class HomeFragment : Fragment() {
         val apiInterface = APIInterface.create().getCountries()
 
         if (apiInterface != null) {
-            apiInterface.enqueue(object : Callback<ArrayList<edu.quinnipiac.ser210.covidapp.Response?>?>{
-                override fun onResponse(
-                    call: Call<ArrayList<edu.quinnipiac.ser210.covidapp.Response?>?>,
-                    response: Response<ArrayList<edu.quinnipiac.ser210.covidapp.Response?>?>
-                ) {
-                    println("hi")
-                    Log.d("Messages", response.message())
-                    Log.d("Headers", response.headers().toString())
-                    Log.d("HomeFragment", "Response body: " + response.body().toString())
-                    println("hi")
-                    // this line is where the error occurs..
-                    countryAdapter.countryList(response.body() !! as ArrayList<edu.quinnipiac.ser210.covidapp.Response>)
-
+            apiInterface.enqueue(object : Callback<CountriesResponse>{
+                override fun onResponse(call: Call<CountriesResponse>, response: Response<CountriesResponse>) {
+                    if (response.isSuccessful) {
+                        val countriesResponse: CountriesResponse? = response.body()
+                        if (countriesResponse != null && countriesResponse.response.isNotEmpty()) {
+                            countryAdapter.countryList(countriesResponse.response)
+                        }
+                    }
                 }
 
-                override fun onFailure(call: Call<ArrayList<edu.quinnipiac.ser210.covidapp.Response?>?>, t: Throwable) {
+                override fun onFailure(call: Call<CountriesResponse>, t: Throwable) {
+                    t.message?.let { Log.d("onFailure", it) }
                     Log.e("HomeFragment", "API CALL FAILED")
                 }
             })
