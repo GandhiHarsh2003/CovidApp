@@ -8,27 +8,31 @@ import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 
-private var countries = arrayListOf<Response>()
+var countries = arrayListOf<Response>()
 class CountryAdapter (private val context: Context, private val navController: NavController): RecyclerView.Adapter<CountryAdapter.CountryViewHolder>()  {
 
 
     inner class CountryViewHolder (view: View, private val context: Context): RecyclerView.ViewHolder(view) {
         val countryTextView: TextView = view.findViewById(R.id.country_textView)
         val continetTextView: TextView = view.findViewById(R.id.continent_textView)
-
+        private var countryIndex = 0
         // this will take user to to the country fragment
         init {
             view.setOnClickListener{
-                navController.navigate(HomeFragmentDirections.actionHomeFragmentToCountryFragment())
+                navController.navigate(HomeFragmentDirections.actionHomeFragmentToCountryFragment(countryIndex))
             }
         }
 
         fun bindData(position: Int){
             val country: Response = countries.get(position)
-            //val countryInfo
-            //val countryInfo = country.response.get(position)
+            countryIndex = position
             countryTextView.text = country.country
-            continetTextView.text = country.continent
+            // we noticed some countries don't have a continent listed
+            if (country.continent == null){
+                continetTextView.text = "N/A"
+            } else {
+                continetTextView.text = country.continent
+            }
         }
     }
 

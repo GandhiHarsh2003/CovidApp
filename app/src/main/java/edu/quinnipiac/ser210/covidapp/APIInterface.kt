@@ -1,7 +1,6 @@
 package edu.quinnipiac.ser210.covidapp
 
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,8 +9,6 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface APIInterface {
-
-
     @GET("statistics")
     @Headers("X-RapidAPI-Key:83825d4d33msh8823d707b46e742p15aa23jsn05fcafc44de7", "X-RapidAPI-Host:covid-193.p.rapidapi.com")
     fun getCountries(): Call<CountriesResponse>
@@ -19,19 +16,9 @@ interface APIInterface {
         var Base_URL = "https://covid-193.p.rapidapi.com/"
 
         fun create(): APIInterface {
-            // Create the logging interceptor and set the log level
-            val logging = HttpLoggingInterceptor()
-            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-
-            // Create the OkHttpClient with the logging interceptor
-            val client = OkHttpClient.Builder()
-                .addInterceptor(logging)
-                .build()
-
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(Base_URL)
-                .client(client)
                 .build()
             return retrofit.create(APIInterface::class.java)
         }
