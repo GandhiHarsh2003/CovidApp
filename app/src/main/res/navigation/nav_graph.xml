@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="edu.quinnipiac.ser210.covidapp.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="Home" >
         <action
             android:id="@+id/action_homeFragment_to_countryFragment"
             app:destination="@id/countryFragment" />
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/changeColorFragment"
         android:name="edu.quinnipiac.ser210.covidapp.ChangeColorFragment"
-        android:label="fragment_change_color"
+        android:label="Change Color"
         tools:layout="@layout/fragment_change_color" />
     <action
         android:id="@+id/action_fragment_change_color"
