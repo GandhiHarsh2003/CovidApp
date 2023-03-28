@@ -30,4 +30,13 @@
     <action
         android:id="@+id/action_helpFragment"
         app:destination="@id/helpFragment" />
+    <fragment
+        android:id="@+id/changeColorFragment"
+        android:name="edu.quinnipiac.ser210.covidapp.ChangeColorFragment"
+        android:label="fragment_change_color"
+        tools:layout="@layout/fragment_change_color" />
+    <action
+        android:id="@+id/action_fragment_change_color"
+        app:destination="@id/changeColorFragment" />
+
 </navigation>

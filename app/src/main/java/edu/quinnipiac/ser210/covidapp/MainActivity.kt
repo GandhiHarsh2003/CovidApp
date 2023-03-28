@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             // I'm sure we'll figure this out
-            R.id.changeColor ->  {
+            R.id.changeColorFrag ->  {
                 true
             }
             else -> item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)

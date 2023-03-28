@@ -6,9 +6,11 @@
         app:showAsAction = "never"
         app:destination="@id/helpFragment"/>
 
-    <item android:id = "@+id/changeColor"
+
+    <item android:id = "@+id/changeColorFragment"
         android:title = "Change Color"
-        app:showAsAction = "never"/>
+        app:showAsAction = "never"
+        app:destination="@id/changeColorFragment"/>
 
     <item android:id = "@+id/share"
         android:title = "Share"
