@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import edu.quinnipiac.ser210.covidapp.databinding.FragmentChangeColorBinding
 
 class ChangeColorFragment : Fragment(), View.OnClickListener {
@@ -16,26 +17,31 @@ class ChangeColorFragment : Fragment(), View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         binding =  FragmentChangeColorBinding.inflate(layoutInflater)
-
-        // buttons
         binding.orangeButton.setOnClickListener(this)
         binding.whiteButton.setOnClickListener(this)
         binding.skyblueButton.setOnClickListener(this)
         return binding.root
     }
 
+
+
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.orange_button -> {
-                binding.root.setBackgroundResource(R.color.orange)
+                background(R.color.orange)
             }
             R.id.white_button -> {
-                binding.root.setBackgroundResource(R.color.white)
+                background(R.color.white)
             }
             R.id.skyblue_button -> {
                 // it wouldn't let me give it a specific name, don't know why
-                binding.root.setBackgroundResource(R.color.purple_500)
+                background(R.color.skyBlue)
             }
         }
+    }
+
+    private fun background(Id: Int) {
+        val colorChanging = ContextCompat.getColor(requireContext(), Id)
+        requireActivity().findViewById<View>(android.R.id.content).setBackgroundColor(colorChanging)
     }
 }

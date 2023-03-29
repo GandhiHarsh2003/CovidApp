@@ -7,4 +7,5 @@
     <color name="black">#FF000000</color>
     <color name="purple_500">#87CEEB</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="skyBlue">#00BFFF</color>
 </resources>
