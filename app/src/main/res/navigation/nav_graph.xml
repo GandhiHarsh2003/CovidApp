@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/countryFragment"
         android:name="edu.quinnipiac.ser210.covidapp.CountryFragment"
-        android:label="fragment_country"
+        android:label="Country"
         tools:layout="@layout/fragment_country" >
         <argument
             android:name="country_index"
@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/helpFragment"
         android:name="edu.quinnipiac.ser210.covidapp.HelpFragment"
-        android:label="fragment_help"
+        android:label="Help"
         tools:layout="@layout/fragment_help" />
     <action
         android:id="@+id/action_helpFragment"

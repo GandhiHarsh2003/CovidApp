@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="41dp"
-        android:text="Orange"
+        android:text="@string/orange"
         app:layout_constraintBottom_toTopOf="@+id/skyblue_button"
         app:layout_constraintStart_toStartOf="@+id/skyblue_button" />
 
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="323dp"
-        android:text="Sky Blue"
+        android:text="@string/sky_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
         android:layout_marginEnd="6dp"
-        android:text="White"
+        android:text="@string/white"
         app:layout_constraintEnd_toEndOf="@+id/skyblue_button"
         app:layout_constraintTop_toBottomOf="@+id/skyblue_button" />
 
@@ -42,9 +42,11 @@
         android:id="@+id/changeColor_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginBottom="51dp"
-        android:text="TextView"
+        android:layout_marginBottom="60dp"
+        android:text="@string/select_a_color"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/orange_button"
+        app:layout_constraintEnd_toEndOf="@+id/orange_button"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="@+id/orange_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

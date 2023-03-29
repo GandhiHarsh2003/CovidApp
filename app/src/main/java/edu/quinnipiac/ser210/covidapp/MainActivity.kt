@@ -14,6 +14,7 @@ import android.widget.Toast
 import android.widget.Toolbar
 import androidx.core.view.MenuItemCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -21,14 +22,18 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
+import edu.quinnipiac.ser210.covidapp.databinding.ActivityMainBinding
+
 class MainActivity : AppCompatActivity() {
+
+    private  lateinit var  navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
+        navController = navHostFragment.navController
         val builder = AppBarConfiguration.Builder(navController.graph)
         val appBarConfiguration = builder.build()
         toolbar.setupWithNavController(navController, appBarConfiguration)
@@ -41,7 +46,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
         return when (item.itemId) {
             // from the lesson demo dealing with navigation
             R.id.share -> {
@@ -49,19 +53,16 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.type = "text/plain"
                 intent.putExtra(Intent.EXTRA_TEXT, "Sharing data about applcation")
-
                 // share intent
                 if (shareActionProvider != null){
                     shareActionProvider.setShareIntent(intent)
                     Log.e("MAIN ACTIVITY", "THIS IS A TEST")
                 }
+
+
                 true
             }
-            // I'm sure we'll figure this out
-            R.id.changeColorFrag ->  {
-                true
-            }
-            else -> item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+            else -> NavigationUI.onNavDestinationSelected(item!!, navController) || super.onOptionsItemSelected(item)
         }
     }
 }
