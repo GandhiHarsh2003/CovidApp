@@ -10,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/covid" />
+        android:src="@drawable/virus" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/country_recycleView"

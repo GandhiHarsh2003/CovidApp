@@ -13,6 +13,7 @@
         android:id="@+id/title_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="@string/title"
         android:textSize="34sp" />
@@ -23,26 +24,26 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:src="@drawable/sick" />
+        android:src="@drawable/patient" />
 
     <TextView
         android:id="@+id/description_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:layout_gravity="center"
+        android:layout_margin="20dp"
         android:gravity="center"
         android:text="@string/about"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/thanks_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_margin="10dp"
+        android:gravity="center"
         android:text="@string/thank_you"
-        android:textSize="16sp" />
+        android:textSize="20sp" />
 
 
 </LinearLayout>

@@ -49,15 +49,26 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             // from the lesson demo dealing with navigation
             R.id.share -> {
-                val shareActionProvider: ShareActionProvider? = MenuItemCompat.getActionProvider(item) as ShareActionProvider?
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT, "Sharing data about applcation")
-                // share intent
-                if (shareActionProvider != null){
-                    shareActionProvider.setShareIntent(intent)
-                    Log.e("MAIN ACTIVITY", "THIS IS A TEST")
+                //https://developer.android.com/training/sharing/send
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+                    type = "text/plain"
                 }
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
+
+                // this for some reason doesn't work...
+//                val shareActionProvider: ShareActionProvider? = MenuItemCompat.getActionProvider(item) as ShareActionProvider?
+//                val intent = Intent(Intent.ACTION_SEND)
+//                intent.type = "text/plain"
+//                intent.putExtra(Intent.EXTRA_TEXT, "Sharing data about applcation")
+//                // share intent
+//                if (shareActionProvider != null){
+//                    shareActionProvider.setShareIntent(intent)
+//                    Log.e("MAIN ACTIVITY", "THIS IS A TEST")
+//                }
 
 
                 true
