@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 var countries = arrayListOf<Response>()
 class CountryAdapter (private val context: Context, private val navController: NavController): RecyclerView.Adapter<CountryAdapter.CountryViewHolder>()  {
-
-
     inner class CountryViewHolder (view: View, private val context: Context): RecyclerView.ViewHolder(view) {
         val countryTextView: TextView = view.findViewById(R.id.country_textView)
         val continetTextView: TextView = view.findViewById(R.id.continent_textView)

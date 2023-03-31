@@ -1,6 +1,7 @@
 package edu.quinnipiac.ser210.covidapp
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,12 +22,15 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import edu.quinnipiac.ser210.covidapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private  lateinit var  navController: NavController
+    private lateinit var countryAdapter: CountryAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         val builder = AppBarConfiguration.Builder(navController.graph)
         val appBarConfiguration = builder.build()
         toolbar.setupWithNavController(navController, appBarConfiguration)
+        countryAdapter = CountryAdapter(this, navController)
     }
 
 
@@ -47,29 +52,29 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            // from the lesson demo dealing with navigation
             R.id.share -> {
-                //https://developer.android.com/training/sharing/send
-                val sendIntent: Intent = Intent().apply {
-                    action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
-                    type = "text/plain"
+                val shareIntent = Intent(Intent.ACTION_SEND)
+                shareIntent.type = "text/plain"
+                val stringBuilder = StringBuilder()
+
+                // Get the currently displayed country in the CountryFragment
+                val navHostFragment = supportFragmentManager.primaryNavigationFragment as NavHostFragment?
+                val countryFragment = navHostFragment?.childFragmentManager?.primaryNavigationFragment as? CountryFragment
+                if (countryFragment != null) {
+                    val country = countryFragment?.let {countries.getOrNull(it.countryIndex) }
+
+                    // Append data from the currently displayed country to the string builder
+                    stringBuilder.append("Country: ${country?.country}\n")
+                    stringBuilder.append("Continent: ${country?.continent ?: "N/A"}\n")
+                    stringBuilder.append("Population: ${country?.population}\n")
+                    stringBuilder.append("Total Cases: ${country?.cases?.total}\n")
+                    stringBuilder.append("Critical Cases: ${country?.cases?.critical}\n")
+                    stringBuilder.append("Recovered Cases: ${country?.cases?.recovered}\n")
+                    stringBuilder.append("Total Deaths: ${country?.deaths?.total}\n\n")
                 }
 
-                val shareIntent = Intent.createChooser(sendIntent, null)
-                startActivity(shareIntent)
-
-                // this for some reason doesn't work...
-//                val shareActionProvider: ShareActionProvider? = MenuItemCompat.getActionProvider(item) as ShareActionProvider?
-//                val intent = Intent(Intent.ACTION_SEND)
-//                intent.type = "text/plain"
-//                intent.putExtra(Intent.EXTRA_TEXT, "Sharing data about applcation")
-//                // share intent
-//                if (shareActionProvider != null){
-//                    shareActionProvider.setShareIntent(intent)
-//                    Log.e("MAIN ACTIVITY", "THIS IS A TEST")
-//                }
-
+                shareIntent.putExtra(Intent.EXTRA_TEXT, stringBuilder.toString())
+                startActivity(Intent.createChooser(shareIntent, "Share via"))
 
                 true
             }

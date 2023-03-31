@@ -10,7 +10,7 @@ import edu.quinnipiac.ser210.covidapp.databinding.FragmentCountryBinding
 
 class CountryFragment : Fragment() {
     private lateinit var binding: FragmentCountryBinding
-    private var countryIndex = 0
+    var countryIndex = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
